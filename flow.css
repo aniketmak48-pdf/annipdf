@@ -1,5 +1,5 @@
 /* Container for tool pages (not index.html) */
-
+/* UI cleanup test */
 /* Global Error Toast - Stackable Popups */
 .error-stack {
     position: fixed;
@@ -1035,4 +1035,5 @@
 
 .workspace-file-status {
     display: flex !important;
+
 }
