@@ -2,6 +2,7 @@
  * ANNI PDF - Common Shared Script
  * Handles UI component loading, global utilities, and tool-specific file logic.
  */
+/* UI cleanup test */
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -381,3 +382,4 @@ function showConfirm(message, onConfirm) {
 // Expose to window for inline scripts
 window.PreviewEngine = PreviewEngine;
 window.showConfirm = showConfirm;
+
