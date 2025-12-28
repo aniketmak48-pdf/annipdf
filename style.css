@@ -1,4 +1,6 @@
 ﻿/* Variables */
+/* UI cleanup test */
+
 :root {
     --bg-color: #C280FF;
     --header-bg: #FFD028;
@@ -1385,4 +1387,5 @@ details>div {
     .filter-container {
         margin-bottom: 30px !important;
     }
+
 }
