@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FAVICON -->
+    <link rel="icon" href="ANNIPDF.svg">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anaheim&family=Annie+Use+Your+Telescope&family=Archivo+Black&family=Lacquer&family=MuseoModerno:wght@100..900&family=Outfit:wght@400;700&family=Permanent+Marker&family=Rock+Salt&family=Space+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=trap@800&display=swap" rel="stylesheet">
+    <!-- Libraries -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7/download.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="flow.css">
+    <title>Merge PDF - Anni PDF</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="floating-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-text">
+                    <span class="text-anni">anni</span>
+                </div>
+                <img src="ANNIPDF.svg" class="logo-icon-img" alt="logo">
+            </a>
+            <nav>
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Organize <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="merge.html" class="dropdown-link active-nav">Merge</a>
+                        <a href="split.html" class="dropdown-link">Split</a>
+                        <a href="rotate.html" class="dropdown-link">Rotate</a>
+                        <a href="reorder.html" class="dropdown-link">Reorder</a>
+                        <a href="delete-pages.html" class="dropdown-link">Delete Pages</a>
+                    </div>
+                </div>
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Optimize <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="compress.html" class="dropdown-link">Compress</a>
+                        <a href="flatten.html" class="dropdown-link">Flatten</a>
+                        <a href="repair.html" class="dropdown-link">Repair</a>
+                        <a href="grayscale.html" class="dropdown-link">Grayscale</a>
+                        <a href="web-ready.html" class="dropdown-link">Web Ready</a>
+                    </div>
+                </div>
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Convert <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG</a>
+                        <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF</a>
+                        <a href="word-to-pdf.html" class="dropdown-link">Word to PDF</a>
+                        <a href="pdf-to-word.html" class="dropdown-link">PDF to Word</a>
+                        <a href="excel-to-pdf.html" class="dropdown-link">Excel to PDF</a>
+                    </div>
+                </div>
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Security <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="unlock.html" class="dropdown-link">Unlock</a>
+                        <a href="protect.html" class="dropdown-link">Protect</a>
+                        <a href="sign.html" class="dropdown-link">Sign</a>
+                        <a href="watermark.html" class="dropdown-link">Watermark</a>
+                        <a href="redact.html" class="dropdown-link">Redact</a>
+                    </div>
+                </div>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="menu-close-btn" id="menuCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="mobile-menu-links">
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">ORGANIZE</span>
+                <a href="merge.html" class="mobile-sub-link active-nav">Merge</a>
+                <a href="split.html" class="mobile-sub-link">Split</a>
+                <a href="rotate.html" class="mobile-sub-link">Rotate</a>
+                <a href="reorder.html" class="mobile-sub-link">Reorder</a>
+                <a href="delete-pages.html" class="mobile-sub-link">Delete Pages</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">OPTIMIZE</span>
+                <a href="compress.html" class="mobile-sub-link">Compress</a>
+                <a href="flatten.html" class="mobile-sub-link">Flatten</a>
+                <a href="repair.html" class="mobile-sub-link">Repair</a>
+                <a href="grayscale.html" class="mobile-sub-link">Grayscale</a>
+                <a href="web-ready.html" class="mobile-sub-link">Web Ready</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">CONVERT</span>
+                <a href="pdf-to-jpg.html" class="mobile-sub-link">PDF to JPG</a>
+                <a href="jpg-to-pdf.html" class="mobile-sub-link">JPG to PDF</a>
+                <a href="word-to-pdf.html" class="mobile-sub-link">Word to PDF</a>
+                <a href="pdf-to-word.html" class="mobile-sub-link">PDF to Word</a>
+                <a href="excel-to-pdf.html" class="mobile-sub-link">Excel to PDF</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">SECURITY</span>
+                <a href="unlock.html" class="mobile-sub-link">Unlock</a>
+                <a href="protect.html" class="mobile-sub-link">Protect</a>
+                <a href="sign.html" class="mobile-sub-link">Sign</a>
+                <a href="watermark.html" class="mobile-sub-link">Watermark</a>
+                <a href="redact.html" class="mobile-sub-link">Redact</a>
+            </div>
+        </div>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div class="main-wrapper">
+        <div class="app-interface is-empty">
+            <div class="app-header">
+                <div class="header-row">
+                    <div class="header-start">
+                        <a href="#" id="headerBackBtn" class="back-btn">
+                            <i class="fa-solid fa-chevron-left icon-left"></i> BACK
+                        </a>
+                        <div id="headerFileStatus" class="header-file-status">
+                            <span class="file-tag">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span class="text-bold">PDFS:</span>
+                                <span id="headerFileCountDisplay" class="text-bold">0</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="header-mid">
+                        <h1 class="tool-name">Merge PDF</h1>
+                    </div>
+                    <div class="header-end">
+                        <button id="mergeBtn" class="next-btn">
+                            MERGE <i class="fa-solid fa-chevron-right icon-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-workspace">
+                <div id="infoBar" class="status-bar">
+                    <div class="file-status workspace-file-status">
+                        <span class="file-tag">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span class="text-bold">PDFS:</span>
+                        </span>
+                        <span id="fileCountDisplay" class="file-name">0</span>
+                    </div>
+                    <button id="resetMergedBtn" class="reset-btn">
+                        <i class="fa-solid fa-trash"></i> CLEAR ALL
+                    </button>
+                </div>
+                <div class="drop-zone" id="uploadArea">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="drop-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span class="drop-label">Drop PDF here or click to browse</span>
+                    <input type="file" id="fileInput" hidden multiple accept=".pdf">
+                </div>
+                <div id="pageGrid" class="grid"></div>
+                <div id="loader">
+                    <div class="spinner"></div>
+                    <h3 id="loaderText" class="loader-text">LOADING</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- HOW TO USE -->
+    <div class="how-to">
+        <h2 class="how-to-title">HOW TO USE</h2>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-num">1</div>
+                <h3>Dump Files</h3>
+            </div>
+            <div class="step-sep"></div>
+            <p class="step-text">Drag your scattered PDF files into the box. We don't care how many.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <h3>Order Them</h3>
+            </div>
+            <div class="step-sep"></div>
+            <p class="step-text">The order you upload/add is the order they get stuck together.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-num">3</div>
+                <h3>Merge & Scram</h3>
+            </div>
+            <div class="step-sep"></div>
+            <p class="step-text">Click Merge. Download the file. Close the tab. We're done here.</p>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer-wrapper">
+        <div class="footer-grid">
+            <div class="footer-col footer-annipdf">
+                <a href="index.html" class="footer-brand">annipdf</a>
+                <p class="footer-tagline">
+                    The anti-subscription PDF tool.<br>
+                    Built for people who hate logins, trackers, and waiting 30 seconds for a file to process.
+                </p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col footer-legal">
+                <div class="footer-heading">Legal Stuff</div>
+                <a href="#" class="footer-link">Privacy (None)</a>
+                <a href="#" class="footer-link">Terms (Don't sue)</a>
+                <a href="#" class="footer-link">Cookies (Yuck)</a>
+            </div>
+        </div>
+        <div class="footer-cc">
+            &copy; 2025 ANNI PDF. CODE IS LAW. BUILT WITH HATE.
+        </div>
+    </footer>
+    <!-- Shared JS -->
+    <script src="common.js"></script>
+    <script src="process-flow.js"></script>
+    <script>
+        // Set up PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        let activeFiles = [];
+        let sortableInstance = null;
+
+        const UI_STATE = { EMPTY: 'EMPTY', UPLOADING: 'UPLOADING', PREVIEW: 'PREVIEW', PROCESSING: 'PROCESSING', SUCCESS: 'SUCCESS' };
+        let currentState = UI_STATE.EMPTY;
+
+        function setState(next) {
+            currentState = next;
+            const toolBox = document.querySelector('.app-interface');
+            const hBack = document.getElementById('headerBackBtn');
+            const hNext = document.getElementById('mergeBtn');
+            const hStatus = document.getElementById('headerFileStatus');
+
+            toolBox.className = `app-interface is-${next.toLowerCase()}`;
+
+            if (next === UI_STATE.EMPTY) {
+                if (hBack) { hBack.style.display = 'none'; hBack.style.opacity = '0'; }
+                if (hNext) { hNext.style.display = 'none'; hNext.style.opacity = '0'; }
+                if (hStatus) { hStatus.style.display = 'none'; }
+            } else if (next === UI_STATE.PREVIEW) {
+                if (activeFiles.length > 0) {
+                    if (hBack) { hBack.style.display = 'inline-flex'; hBack.style.opacity = '1'; }
+                    if (hNext) { hNext.style.display = 'inline-flex'; hNext.style.opacity = '1'; }
+                    if (hStatus) { hStatus.style.display = 'flex'; }
+                } else {
+                    if (hBack) { hBack.style.display = 'none'; hBack.style.opacity = '0'; }
+                    if (hNext) { hNext.style.display = 'none'; hNext.style.opacity = '0'; }
+                    if (hStatus) { hStatus.style.display = 'none'; }
+                }
+            } else if (next === UI_STATE.PROCESSING) {
+                if (hNext) hNext.disabled = true;
+            }
+        }
+
+        window.addEventListener('anniFilesSelected', (e) => {
+            const { files } = e.detail;
+            if (!files || files.length === 0) return;
+
+            const newFiles = Array.from(files).map(f => {
+                f._id = Math.random().toString(36).substr(2, 9);
+                return f;
+            });
+
+            activeFiles = [...activeFiles, ...newFiles];
+            if (currentState === UI_STATE.EMPTY) setState(UI_STATE.UPLOADING);
+            startPreview(activeFiles);
+        });
+
+        function startPreview(files) {
+            window.PreviewEngine.init({
+                files: files,
+                loaderText: 'LOADING',
+                generatePreview: async (currentFiles) => {
+                    const fragment = document.createDocumentFragment();
+                    for (const file of currentFiles) {
+                        const pageCard = document.createElement('div');
+                        pageCard.className = 'page page-aspect';
+                        pageCard.dataset.id = file._id;
+
+                        const label = document.createElement('div');
+                        label.className = 'page-name';
+                        label.innerText = file.name;
+                        pageCard.appendChild(label);
+
+                        const previewContainer = document.createElement('div');
+                        previewContainer.className = 'page-view';
+                        const canvas = document.createElement('canvas');
+                        canvas.className = 'page-img';
+                        previewContainer.appendChild(canvas);
+                        pageCard.appendChild(previewContainer);
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.className = 'aspect-btn';
+                        removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                        removeBtn.onclick = (e) => { e.stopPropagation(); removeFile(file._id); };
+                        pageCard.appendChild(removeBtn);
+
+                        try {
+                            const arrayBuffer = await file.arrayBuffer();
+                            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                            const page = await pdf.getPage(1);
+                            const viewport = page.getViewport({ scale: 0.8 });
+                            const context = canvas.getContext('2d');
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+                            await page.render({ canvasContext: context, viewport: viewport }).promise;
+                        } catch (err) {
+                            previewContainer.innerHTML = '<i class="fa-solid fa-file-pdf page-error-icon"></i>';
+                        }
+                        fragment.appendChild(pageCard);
+                    }
+                    const addMoreCard = document.createElement('div');
+                    addMoreCard.className = 'page add-page add-page-aspect';
+                    addMoreCard.onclick = () => document.getElementById('fileInput').click();
+                    addMoreCard.innerHTML = '<i class="fa-solid fa-plus add-icon"></i><span class="add-text">ADD PDF</span>';
+                    fragment.appendChild(addMoreCard);
+                    return fragment;
+                },
+                onSuccess: () => {
+                    const grid = document.getElementById('pageGrid');
+                    if (sortableInstance) sortableInstance.destroy();
+                    sortableInstance = new Sortable(grid, {
+                        animation: 250,
+                        delay: 150, // Requires 150ms hold to start dragging
+                        delayOnTouchOnly: true, // Only use delay on mobile devices
+                        touchStartThreshold: 5, // Must move finger 5px before drag starts
+                        ghostClass: 'sortable-ghost',
+                        chosenClass: 'sortable-chosen',
+                        dragClass: 'sortable-drag',
+                        draggable: '.page:not(.add-page)',
+                        filter: '.add-page, .aspect-btn',
+                        fallbackClass: 'sortable-drag',
+                        onEnd: (evt) => {
+                            const newOrder = [];
+                            grid.querySelectorAll('.page:not(.add-page)').forEach(card => {
+                                const file = activeFiles.find(f => f._id === card.dataset.id);
+                                if (file) newOrder.push(file);
+                            });
+                            activeFiles = newOrder;
+                        }
+                    });
+                    setState(UI_STATE.PREVIEW);
+                    syncCounts();
+                }
+            });
+        }
+
+        function syncCounts() {
+            document.getElementById('fileCountDisplay').innerText = activeFiles.length;
+            const hMd = document.getElementById('headerFileCountDisplay');
+            if (hMd) hMd.innerText = activeFiles.length;
+        }
+
+        document.getElementById('resetMergedBtn').addEventListener('click', () => {
+            showConfirm('ARE YOU SURE YOU WANT TO RESET?', () => {
+                activeFiles = [];
+                const grid = document.getElementById('pageGrid');
+                grid.innerHTML = ''; // Clear all pages including add-page card
+
+                // Reset File Input
+                document.getElementById('fileInput').value = '';
+
+                // Update UI state
+                syncCounts();
+                setState(UI_STATE.EMPTY);
+
+                // Manual UI Cleanup (Restore Dropzone)
+                const uploadArea = document.getElementById('uploadArea');
+                const loader = document.getElementById('loader');
+                if (uploadArea) uploadArea.style.display = 'block';
+                if (loader) loader.style.display = 'none';
+                if (grid) grid.style.display = 'none';
+            });
+        });
+
+        function removeFile(id) {
+            activeFiles = activeFiles.filter(f => f._id !== id);
+            const card = document.querySelector(`.page[data-id="${id}"]`);
+            if (card) card.remove();
+            syncCounts();
+
+            if (activeFiles.length === 0) {
+                // If last file is removed, perform full reset to empty state
+                document.getElementById('resetMergedBtn').click();
+            }
+        }
+
+        let errorSequence = 0;
+        document.getElementById('mergeBtn').addEventListener('click', async () => {
+            if (activeFiles.length < 2) {
+                const existing = document.querySelectorAll('.error-msg');
+                if (existing.length >= 2) {
+                    // Shake existing AND restart their 3s timers
+                    existing.forEach(el => {
+                        el.classList.remove('shake');
+                        void el.offsetWidth;
+                        el.classList.add('shake');
+
+                        // Restart the removal timer for each element
+                        if (el._timer) clearTimeout(el._timer);
+                        el._timer = setTimeout(() => {
+                            el.classList.remove('show');
+                            setTimeout(() => {
+                                el.remove();
+                                const container = document.getElementById('errorStack');
+                                if (container && container.children.length === 0) {
+                                    container.remove();
+                                    errorSequence = 0;
+                                }
+                            }, 400);
+                        }, 3000);
+                    });
+                    return;
+                }
+
+                errorSequence++;
+                if (errorSequence === 1) {
+                    showError("You need at least 2 PDFs to merge, math genius.");
+                } else if (errorSequence >= 2) {
+                    showError("I SAID TWO FILES! DO YOU NEED A CALCULATOR?");
+                }
+                return;
+            }
+            // Reset sequence on success or file addition
+            errorSequence = 0;
+            const btn = document.getElementById('mergeBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            setState(UI_STATE.PROCESSING);
+            try {
+                const { PDFDocument } = PDFLib;
+                const mergedPdf = await PDFDocument.create();
+                for (const file of activeFiles) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await PDFDocument.load(arrayBuffer);
+                    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                    copiedPages.forEach((page) => mergedPdf.addPage(page));
+                }
+                const pdfBytes = await mergedPdf.save();
+                const genZLines = [
+                    "Merged. Now go outside. Touching grass is free.",
+                    "Merged. Go touch grass. This one’s on me.",
+                    "It's giving 'I finally finished my homework' energy.",
+                    "No cap, your files are merged. Take it and go.",
+                    "Files merged. Brain empty. Task done.",
+                    "Main character energy achieved. Your files are one now.",
+                ];
+                const randomLine = genZLines[Math.floor(Math.random() * genZLines.length)];
+
+                const flow = new ProcessFlow();
+                flow.showSuccess({
+                    action: 'MERGED',
+                    text: randomLine,
+                    footerText: "Stop staring and download the damn file.",
+                    onDownload: () => download(pdfBytes, "merged_anni.pdf", "application/pdf"),
+                    onBack: () => location.reload()
+                });
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            } catch (err) {
+                console.error(err);
+                alert("Merge failed: " + err.message);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                setState(UI_STATE.PREVIEW);
+            }
+        });
+
+        document.getElementById('headerBackBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('resetMergedBtn').click();
+        });
+
+        function showError(msg) {
+            let container = document.getElementById('errorStack');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'errorStack';
+                container.className = 'error-stack';
+                document.body.appendChild(container);
+            }
+
+            const errorEl = document.createElement('div');
+            errorEl.className = 'error-msg';
+            errorEl.innerText = msg;
+
+            container.appendChild(errorEl);
+
+            requestAnimationFrame(() => {
+                errorEl.classList.add('show');
+            });
+
+            // Function to set up the removal timer
+            const startTimer = () => {
+                if (errorEl._timer) clearTimeout(errorEl._timer);
+                errorEl._timer = setTimeout(() => {
+                    errorEl.classList.remove('show');
+                    setTimeout(() => {
+                        errorEl.remove();
+                        if (container.children.length === 0) {
+                            container.remove();
+                            errorSequence = 0;
+                        }
+                    }, 400);
+                }, 3000);
+            };
+
+            startTimer();
+        }
+    </script>
+</body>
+
+</html>

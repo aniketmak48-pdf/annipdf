@@ -1,0 +1,1038 @@
+/* Container for tool pages (not index.html) */
+
+/* Global Error Toast - Stackable Popups */
+.error-stack {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column-reverse;
+    /* Newest on bottom/top depending on preference, usually bottom is good for fixed bottom */
+    gap: 12px;
+    z-index: 10000;
+    pointer-events: none;
+    align-items: center;
+}
+
+.error-msg {
+    background: #FF0055;
+    color: #fff;
+    padding: 12px 24px;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    width: max-content;
+    max-width: 90vw;
+    pointer-events: auto;
+}
+
+.error-msg.show {
+    transform: translateY(0);
+    opacity: 1 !important;
+    /* Explicitly solid */
+}
+
+.error-msg.shake {
+    animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 40px;
+}
+
+/* Utility classes for visibility and spacing */
+.hidden {
+    display: none;
+}
+
+.icon-left {
+    margin-right: 0.5rem;
+}
+
+.icon-right {
+    margin-left: 0.5rem;
+}
+
+.loader-text {
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+/* Custom Confirmation Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 20000;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.confirm-modal {
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .confirm-modal {
+    transform: translateY(0);
+}
+
+.confirm-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.confirm-btn-yes {
+    background: #FF0055;
+    color: #fff;
+    border: 2px solid #000;
+    padding: 0.5rem 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s;
+}
+
+.confirm-btn-yes:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.confirm-btn-no {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    padding: 0.5rem 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s;
+}
+
+.confirm-btn-no:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+
+.dropdown-chevron {
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+
+/* Next Button - specific for forward actions */
+.next-btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    font-family: 'Space Mono', monospace;
+    border: 2px solid #000;
+    background: #FFD028;
+    box-shadow: 4px 4px 0px #bdbdbd;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+
+    line-height: 1;
+}
+
+.next-btn:hover {
+    transform: translateX(4px);
+    background-color: #FFD028;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+/* Back Button */
+.back-btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    font-family: 'Space Mono', monospace;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #bdbdbd;
+    background: rgb(255, 255, 255);
+    color: #000;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.back-btn:hover {
+    transform: translateX(-4px);
+    background-color: #FFD028;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+/* Reset Button - minimalist text link */
+.reset-btn {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #FF0055;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.reset-btn:hover {
+    color: #cc0044;
+    background: transparent;
+    transform: none;
+}
+
+/* Edit Button - for tools with settings (blue) */
+.edit-btn {
+    background: transparent;
+    border: 2px solid transparent;
+    box-shadow: none;
+    color: #6B7280;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-family: monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.edit-btn:hover {
+    color: #4F46E5;
+    background: #e0e7ff;
+    border: 2px solid #c7d2fe;
+    transform: none;
+}
+
+/* --- OTHER BUTTONS (Success, Delete, etc) --- */
+
+/* Download and More buttons moved to success section at bottom */
+
+/* Delete Button (Cards) */
+/* Generic Card Action Button (Delete, Rotate, etc.) */
+.aspect-btn {
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: all 0.2s;
+    position: static;
+    margin: 8px auto 0 auto;
+    /* Centered below */
+    color: #FF0055;
+}
+
+.aspect-btn:hover {
+    background: #FF0055;
+    color: #fff;
+    transform: scale(1.1);
+    border-color: #000;
+}
+
+/* ===================================
+   5-STATE SYSTEM (Simple Names)
+   Change ONE class on .app-interface to control entire UI
+   =================================== */
+
+/* Smooth transitions between states */
+.app-interface>* {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* STATE 1: EMPTY (default - show upload only) */
+.app-interface.is-empty .next-btn,
+.app-interface.is-empty .back-btn,
+.app-interface.is-empty .reset-btn,
+.app-interface.is-empty .header-file-status,
+.app-interface.is-empty .status-bar,
+.app-interface.is-empty #pageGrid,
+.app-interface.is-empty #loader,
+.app-interface.is-empty .success-container {
+    display: none;
+}
+
+/* Override ONLY for the initial empty state */
+.app-interface.is-empty {
+    max-width: 48rem;
+    min-height: auto;
+}
+
+/* STATE 2: UPLOADING (show loader only) */
+.app-interface.is-uploading .drop-zone,
+.app-interface.is-uploading #pageGrid,
+.app-interface.is-uploading .status-bar,
+.app-interface.is-uploading .success-container,
+.app-interface.is-uploading .next-btn,
+.app-interface.is-uploading .back-btn,
+.app-interface.is-uploading .reset-btn {
+    display: none;
+}
+
+.app-interface.is-uploading #loader {
+    display: block;
+}
+
+.app-interface.is-uploading .how-to {
+    display: none;
+}
+
+/* STATE 3: PREVIEW (main working state - show everything) */
+.app-interface.is-preview .drop-zone,
+.app-interface.is-preview #loader,
+.app-interface.is-preview .success-container {
+    display: none;
+}
+
+.app-interface.is-preview .next-btn,
+.app-interface.is-preview .back-btn,
+.app-interface.is-preview .reset-btn,
+.app-interface.is-preview .status-bar,
+.app-interface.is-preview #pageGrid {
+    display: flex;
+}
+
+.app-interface.is-preview #pageGrid {
+    display: grid;
+}
+
+/* STATE 4: PROCESSING (disable interactions, show loader overlay) */
+.app-interface.is-processing #pageGrid,
+.app-interface.is-processing .status-bar {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.app-interface.is-processing .next-btn,
+.app-interface.is-processing .back-btn,
+.app-interface.is-processing .reset-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.app-interface.is-processing #loader {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(255, 253, 245, 0.9);
+    /* Solid-ish overlay to keep background stable */
+    justify-content: center;
+    align-items: center;
+}
+
+/* STATE 5: SUCCESS (handled by ProcessFlow - hide everything except success) */
+.app-interface.is-success .drop-zone,
+.app-interface.is-success #pageGrid,
+.app-interface.is-success #loader,
+.app-interface.is-success .status-bar {
+    display: none;
+}
+
+.app-interface.is-success .success-container {
+    display: flex;
+}
+
+/* STATE 6: ERROR (optional - show error message) */
+.app-interface.is-error .drop-zone,
+.app-interface.is-error #pageGrid,
+.app-interface.is-error #loader {
+    display: none;
+}
+
+.app-interface.is-error .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Minimalist drag styles */
+/* Position Swap Sorting Visuals - Solid Ops */
+.sortable-ghost {
+    opacity: 0 !important;
+    /* This hides the 'copy' in the grid */
+    pointer-events: none;
+}
+
+.sortable-chosen {
+    opacity: 0 !important;
+    /* Hides the initial item immediately upon click */
+}
+
+.sortable-drag {
+    opacity: 1 !important;
+    /* The card you are holding is the only one visible */
+    background-color: #fff !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2) !important;
+    transform: scale(1.02);
+    cursor: grabbing !important;
+    z-index: 10000;
+}
+
+.page {
+    /* Optimization for SortableJS */
+    will-change: transform;
+    user-select: none;
+    transition: transform 0.2s, border-color 0.2s;
+    /* Avoid 'all' to prevent jitter with SortableJS */
+}
+
+
+.dragging-over {
+    border-color: #000 !important;
+    background-color: #f9fafb;
+}
+
+
+
+/* Page card aspect ratio and sizing - A4 Standard */
+/* Page card aspect ratio and sizing - A4 Standard */
+/* Page card - Container adapts to content */
+/* Page card aspect ratio and sizing - A4 Standard */
+.page-aspect {
+    width: 100%;
+    height: auto;
+    /* Let it grow to fit A4 View + Buttons */
+}
+
+/* Add more card styling */
+.add-page-aspect {
+    width: 100%;
+    aspect-ratio: 210 / 297;
+    height: auto;
+}
+
+/* Fallback icon for failed previews */
+.page-error-icon {
+    font-size: 4rem;
+    color: #FF0055;
+}
+
+/* Size management: Expansion happens once and stays stable */
+.app-interface {
+    width: 100%;
+    max-width: 920px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #FFFDF5;
+    border: 3px solid #000;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.app-header {
+    padding: 10px 30px;
+    border-bottom: 4px solid black;
+}
+
+.header-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    min-height: 60px;
+}
+
+.header-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-mid {
+    text-align: center;
+}
+
+.header-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tool-name {
+    font-size: 1.875rem;
+    font-weight: bold;
+    letter-spacing: -0.025em;
+    color: #111827;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: 'Space Mono', monospace;
+    margin: 0;
+}
+
+.app-workspace {
+    padding: 30px;
+    background-color: #FFFDF5;
+}
+
+/* Top Toolbar (File Info Bar) */
+.status-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 16px;
+    border-bottom: 2px dashed #E5E7EB;
+    padding-bottom: 25px;
+}
+
+.status-bar .reset-btn {
+    margin-left: auto;
+}
+
+.file-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+}
+
+.file-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.file-tag i {
+    color: #FF0055;
+    font-size: 1.25rem;
+}
+
+.file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 20rem;
+}
+
+
+
+/* Upload Zone */
+.drop-zone {
+    border: 2px dashed #9CA3AF;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+.drop-zone:hover {
+    background-color: #F9FAFB;
+    border-color: black;
+}
+
+.drop-icon {
+    height: 2rem;
+    width: 2rem;
+    color: #9CA3AF;
+    margin-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.drop-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4B5563;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 0;
+}
+
+.grid.split {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+/* JS Generated Cards */
+.page {
+    position: relative;
+    background-color: white;
+    border: 2px solid black;
+    padding: 0.75rem;
+    transition: all 0.2s;
+    cursor: move;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.page:hover {
+    transform: translatey(-3px);
+    border: 2px solid #A3E635;
+}
+
+.page-name {
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.page-view {
+    /* flex: 1; REMOVED to enforce fixed height via aspect-ratio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    width: 100%;
+    aspect-ratio: 210 / 297;
+    /* Fixed A4 Size for the View */
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    /* Thin border definition */
+}
+
+.page-img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Removes potential small gap at bottom of canvas */
+}
+
+.page-error {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    background-color: #F9FAFB;
+}
+
+.add-page {
+    position: relative;
+    background-color: #F9FAFB;
+    border: 2px dashed #9CA3AF;
+    padding: 1rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* Stretch to match siblings */
+    min-height: 250px;
+    /* Minimum reasonable height approx equal to A4 card */
+}
+
+.add-page:hover {
+    background-color: #ffffff;
+    border: 2px dashed #A3E635;
+}
+
+.add-icon {
+    font-size: 2rem;
+    color: #9CA3AF;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.add-page:hover .add-icon {
+    color: rgb(0, 0, 0);
+}
+
+.add-text {
+    color: #6B7280;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.add-page:hover .add-text {
+    color: rgb(0, 0, 0);
+}
+
+
+/* --- SUCCESS POPUP --- */
+#successOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(4px);
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#successOverlay.active {
+    display: flex;
+}
+
+@keyframes popUpScale {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-popup-card {
+    background: #FFFDF5;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    animation: popUpScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-action-badge {
+    background: #FFD028;
+    color: #000;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2rem;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    display: inline-block;
+    padding: 10px 20px;
+    transform: rotate(-2deg);
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+.success-message {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.success-coffee {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 30px;
+    border-top: 2px dashed #ccc;
+    padding-top: 15px;
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.more-btn,
+.download-btn {
+    flex: 1;
+    /* Percentage width */
+    padding: 12px 10px;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 3px solid #000;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 6px 6px 0px #000;
+}
+
+.more-btn {
+    background: #fff;
+    color: #000;
+}
+
+.download-btn {
+    background: #A3E635;
+    color: #000;
+}
+
+.more-btn:hover,
+.download-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+}
+
+/* ===================================
+   RESPONSIVE ADJUSTMENTS
+   =================================== */
+
+/* Tablet & Mobile (Max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* 1. Header Layout & Visibility */
+    /* Hide tool title when files are present to save space */
+    .app-interface:not(.is-empty) .header-mid {
+        display: none !important;
+    }
+
+    /* Force buttons/items to edges when title is hidden */
+    .app-interface:not(.is-empty) .header-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 0 !important;
+    }
+
+    /* Standard Grid for Header when empty (Logo/Title etc) */
+    .header-row {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    /* 2. File Status Logic (Mobile Mode) */
+    /* Show Header Info (replacing workspace info) */
+    .app-interface:not(.is-empty) .header-file-status {
+        display: flex !important;
+        align-items: center;
+    }
+
+    /* Hide Workspace Info (to save vertical space) */
+    .app-interface .workspace-file-status {
+        display: none !important;
+    }
+
+    /* 3. Navigation Logic */
+    /* Hide Back Button to make room for Header Info */
+    .app-interface:not(.is-empty) .back-btn {
+        display: none !important;
+    }
+
+    /* 4. Grid Layout */
+    /* 3 Columns for Tablet/Large Phone */
+    .grid,
+    .grid.split {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 15px;
+    }
+}
+
+/* Mobile Specific (Max-Width: 431px) */
+@media (max-width: 431px) {
+    .main-wrapper {
+        padding: 10px;
+        margin-top: 25px;
+    }
+
+    .app-interface {
+        width: 100%;
+    }
+
+    .app-header {
+        padding: 10px 25px !important;
+        font-size: 1.1rem;
+    }
+
+    .tool-name {
+        font-size: 1.5rem;
+    }
+
+    .app-workspace {
+        padding: 25px;
+    }
+
+    /* Buttons */
+    /* Buttons - Restore specific values */
+    .reset-btn {
+        font-size: 0.8rem;
+    }
+
+    .next-btn,
+    .back-btn {
+        padding: 0.5rem 1.1rem;
+        font-size: 1rem;
+    }
+
+    .btn-secondary {
+        font-size: 0.75rem;
+    }
+
+    /* Status Bar adjustments */
+    .status-bar {
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 0.5rem;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+    }
+
+    .status-bar .reset-btn {
+        margin-left: 0 !important;
+    }
+
+    .file-status {
+        flex: 1;
+        font-size: 0.8rem;
+    }
+
+    .file-name {
+        max-width: 180px;
+    }
+
+    .drop-zone {
+        padding: 30px 10px;
+    }
+
+    /* 2 Columns for Small Mobile */
+    .grid,
+    .grid.split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    /* Touch Optimizations */
+    .next-btn:hover,
+    .back-btn:hover {
+        transform: none;
+        box-shadow: 2px 2px 0px #000;
+    }
+
+    .next-btn:active,
+    .back-btn:active {
+        transform: scale(0.95);
+        box-shadow: 1px 1px 0px #000;
+        background-color: #e5bd24;
+    }
+}
+
+/* Desktop Defaults (Outside Media Queries) */
+.header-file-status {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    display: none !important;
+}
+
+
+.workspace-file-status {
+    display: flex !important;
+}

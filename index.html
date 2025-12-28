@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anni PDF - The Anti-Subscription PDF Tool</title>
+    <link rel="icon" href="ANNIPDF.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anaheim&family=Annie+Use+Your+Telescope&family=Archivo+Black&family=Lacquer&family=MuseoModerno:wght@100..900&family=Outfit:wght@400;700&family=Permanent+Marker&family=Rock+Salt&family=Space+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=trap@800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="flow.css">
+</head>
+
+<body>
+
+    <header class="floating-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-text">
+                    <span class="text-anni">anni</span>
+                </div>
+                <img src="ANNIPDF.svg" class="logo-icon-img" alt="logo">
+            </a>
+            <nav>
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Organize <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="merge.html" class="dropdown-link">Merge</a>
+                        <a href="split.html" class="dropdown-link">Split</a>
+                        <a href="rotate.html" class="dropdown-link">Rotate</a>
+                        <a href="reorder.html" class="dropdown-link">Reorder</a>
+                        <a href="delete-pages.html" class="dropdown-link">Delete Pages</a>
+                    </div>
+                </div>
+
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Optimize <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="compress.html" class="dropdown-link">Compress</a>
+                        <a href="flatten.html" class="dropdown-link">Flatten</a>
+                        <a href="repair.html" class="dropdown-link">Repair</a>
+                        <a href="grayscale.html" class="dropdown-link">Grayscale</a>
+                        <a href="web-ready.html" class="dropdown-link">Web Ready</a>
+                    </div>
+                </div>
+
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Convert <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG</a>
+                        <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF</a>
+                        <a href="word-to-pdf.html" class="dropdown-link">Word to PDF</a>
+                        <a href="pdf-to-word.html" class="dropdown-link">PDF to Word</a>
+                        <a href="excel-to-pdf.html" class="dropdown-link">Excel to PDF</a>
+                    </div>
+                </div>
+
+                <div class="desktop-nav-item">
+                    <a href="#" class="nav-link">Security <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="desktop-dropdown">
+                        <a href="unlock.html" class="dropdown-link">Unlock</a>
+                        <a href="protect.html" class="dropdown-link">Protect</a>
+                        <a href="sign.html" class="dropdown-link">Sign</a>
+                        <a href="watermark.html" class="dropdown-link">Watermark</a>
+                        <a href="redact.html" class="dropdown-link">Redact</a>
+                    </div>
+                </div>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="menu-close-btn" id="menuCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="mobile-menu-links">
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">ORGANIZE</span>
+                <a href="merge.html" class="mobile-sub-link">Merge</a>
+                <a href="split.html" class="mobile-sub-link">Split</a>
+                <a href="rotate.html" class="mobile-sub-link">Rotate</a>
+                <a href="reorder.html" class="mobile-sub-link">Reorder</a>
+                <a href="delete-pages.html" class="mobile-sub-link">Delete Pages</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">OPTIMIZE</span>
+                <a href="compress.html" class="mobile-sub-link">Compress</a>
+                <a href="flatten.html" class="mobile-sub-link">Flatten</a>
+                <a href="repair.html" class="mobile-sub-link">Repair</a>
+                <a href="grayscale.html" class="mobile-sub-link">Grayscale</a>
+                <a href="web-ready.html" class="mobile-sub-link">Web Ready</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">CONVERT</span>
+                <a href="pdf-to-jpg.html" class="mobile-sub-link">PDF to JPG</a>
+                <a href="jpg-to-pdf.html" class="mobile-sub-link">JPG to PDF</a>
+                <a href="word-to-pdf.html" class="mobile-sub-link">Word to PDF</a>
+                <a href="pdf-to-word.html" class="mobile-sub-link">PDF to Word</a>
+                <a href="excel-to-pdf.html" class="mobile-sub-link">Excel to PDF</a>
+            </div>
+            <div class="mobile-cat-group">
+                <span class="mobile-cat-title">SECURITY</span>
+                <a href="unlock.html" class="mobile-sub-link">Unlock</a>
+                <a href="protect.html" class="mobile-sub-link">Protect</a>
+                <a href="sign.html" class="mobile-sub-link">Sign</a>
+                <a href="watermark.html" class="mobile-sub-link">Watermark</a>
+                <a href="redact.html" class="mobile-sub-link">Redact</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-container">
+
+        <section class="hero-section">
+            <h1 class="hero-title">
+                Professional PDF Tools. <span class="highlight-text">Absolutely Free.</span>
+            </h1>
+            <div class="hero-subtitle">
+                Clean, fast, whatever. just use it i’m tired.
+            </div>
+        </section>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="SEARCH TOOLS..." class="search-input">
+            <i class="fa-solid fa-search search-icon"></i>
+        </div>
+
+        <div class="filter-container">
+            <button class="tool-filter active" data-filter="all">All Tools</button>
+            <button class="tool-filter" data-filter="popular">Most Used</button>
+            <button class="tool-filter" data-filter="organize">Organize</button>
+            <button class="tool-filter" data-filter="optimize">Optimize</button>
+            <button class="tool-filter" data-filter="convert">Convert</button>
+            <button class="tool-filter" data-filter="security">Security</button>
+        </div>
+
+        <div class="tools-grid" id="toolsGrid">
+
+            <a href="merge.html" class="tool-card" id="tool-merge" data-category="organize popular">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file tool-icon"></i></div>
+                    <h3 class="tool-card-name">Merge PDF</h3>
+                    <p class="tool-card-desc">Stitch multiple documents into one long scroll.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="split.html" class="tool-card" id="tool-split" data-category="organize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-scissors tool-icon"></i></div>
+                    <h3 class="tool-card-name">Split PDF</h3>
+                    <p class="tool-card-desc">Take one file and blast it into tiny little pieces.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="rotate.html" class="tool-card" id="tool-rotate" data-category="organize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-rotate-right tool-icon"></i></div>
+                    <h3 class="tool-card-name">Rotate PDF</h3>
+                    <p class="tool-card-desc">Fix the pages you scanned upside down by accident.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="delete-pages.html" class="tool-card" id="tool-delete" data-category="organize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-trash-can tool-icon"></i></div>
+                    <h3 class="tool-card-name">Delete Pages</h3>
+                    <p class="tool-card-desc">Remove the pages you didn't mean to include.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="reorder.html" class="tool-card" id="tool-reorder" data-category="organize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-sort tool-icon"></i></div>
+                    <h3 class="tool-card-name">Reorder</h3>
+                    <p class="tool-card-desc">Shuffle the deck. Put page 10 where page 1 belongs.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="compress.html" class="tool-card" id="tool-compress" data-category="optimize popular">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file-zipper tool-icon"></i></div>
+                    <h3 class="tool-card-name">Compress</h3>
+                    <p class="tool-card-desc">Crush the pixels until the file size is acceptable.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="flatten.html" class="tool-card" id="tool-flatten" data-category="optimize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-clone tool-icon"></i></div>
+                    <h3 class="tool-card-name">Flatten PDF</h3>
+                    <p class="tool-card-desc">Merge layers. No more editable forms allowed.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="repair.html" class="tool-card" id="tool-repair" data-category="optimize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-screwdriver-wrench tool-icon"></i></div>
+                    <h3 class="tool-card-name">Repair PDF</h3>
+                    <p class="tool-card-desc">Fix broken files. It's like duct tape for data.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="grayscale.html" class="tool-card" id="tool-grayscale" data-category="optimize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-droplet-slash tool-icon"></i></div>
+                    <h3 class="tool-card-name">Grayscale</h3>
+                    <p class="tool-card-desc">Remove all joy (color). Save your printer ink.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="web-ready.html" class="tool-card" id="tool-webready" data-category="optimize">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-globe tool-icon"></i></div>
+                    <h3 class="tool-card-name">Web Ready</h3>
+                    <p class="tool-card-desc">Linearize it so it loads fast on bad connections.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="pdf-to-jpg.html" class="tool-card" id="tool-pdf-to-jpg" data-category="convert">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file tool-icon"></i></div>
+                    <h3 class="tool-card-name">PDF to JPG</h3>
+                    <p class="tool-card-desc">Turn pages into images. Great for annoying people.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="jpg-to-pdf.html" class="tool-card" id="tool-jpg-to-pdf" data-category="convert popular">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file-image tool-icon"></i></div>
+                    <h3 class="tool-card-name">JPG to PDF</h3>
+                    <p class="tool-card-desc">Make a document out of your scattered screenshots.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="word-to-pdf.html" class="tool-card" id="tool-word-to-pdf" data-category="convert">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file-word tool-icon"></i></div>
+                    <h3 class="tool-card-name">Word to PDF</h3>
+                    <p class="tool-card-desc">The classic. Turn docx into something stable.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="pdf-to-word.html" class="tool-card" id="tool-pdf-to-word" data-category="convert popular">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file-word tool-icon"></i></div>
+                    <h3 class="tool-card-name">PDF to Word</h3>
+                    <p class="tool-card-desc">The impossible. Try to turn it back into a docx.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="excel-to-pdf.html" class="tool-card" id="tool-excel-to-pdf" data-category="convert">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-file-excel tool-icon"></i></div>
+                    <h3 class="tool-card-name">Excel to PDF</h3>
+                    <p class="tool-card-desc">Spreadsheets look better when they can't be changed.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="unlock.html" class="tool-card" id="tool-unlock" data-category="security">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-unlock tool-icon"></i></div>
+                    <h3 class="tool-card-name">Unlock PDF</h3>
+                    <p class="tool-card-desc">Remove passwords (if you know them, obviously).</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="protect.html" class="tool-card" id="tool-protect" data-category="security">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-lock tool-icon"></i></div>
+                    <h3 class="tool-card-name">Protect</h3>
+                    <p class="tool-card-desc">Add a password. Keep your secrets secret.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="sign.html" class="tool-card" id="tool-sign" data-category="security popular">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-signature tool-icon"></i></div>
+                    <h3 class="tool-card-name">Sign PDF</h3>
+                    <p class="tool-card-desc">Scribble your signature without printing anything.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="watermark.html" class="tool-card" id="tool-watermark" data-category="security">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-stamp tool-icon"></i></div>
+                    <h3 class="tool-card-name">Watermark</h3>
+                    <p class="tool-card-desc">Slap your logo on every single page. Mine.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+            <a href="redact.html" class="tool-card" id="tool-redact" data-category="security">
+                <div>
+                    <div class="icon-box"><i class="fa-solid fa-user-secret tool-icon"></i></div>
+                    <h3 class="tool-card-name">Redact</h3>
+                    <p class="tool-card-desc">Black out the sensitive stuff. CIA style.</p>
+                </div>
+                <span class="action-btn">Start</span>
+            </a>
+
+        </div>
+
+        <section class="spite-section">
+            <div class="spite-content">
+                <p style="margin-bottom: 20px;">
+                    POV: You just want to rotate a single page, but the website wants $15/month, your email address,
+                    your mother's maiden name, and a 12-month contract.
+                </p>
+                <p style="margin-bottom: 20px; background: #FFD028; display: inline-block; padding: 5px 10px;">
+                    IT'S GIVING CORPORATE GREED.
+                </p>
+                <p style="margin-bottom: 0;">
+                    I got tired of clicking "X" on popup ads. I got tired of "2 Free Tasks Left". So I coded this
+                    dumpster fire of a website. It runs in your browser. It costs $0. Now please go away and let me
+                    sleep.
+                </p>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2 class="faq-title">FAQ</h2>
+
+            <div class="faq-item">
+                <details>
+                    <summary>
+                        <span>IS THIS SAFE?</span>
+                        <span style="font-size: 1.2rem;">+</span>
+                    </summary>
+                    <div style="background: #67E8F9;"> Yes. Files are processed in your browser. We don't see them. We
+                        don't want to see them.
+                    </div>
+                </details>
+            </div>
+
+            <div class="faq-item">
+                <details>
+                    <summary>
+                        <span>WHY IS IT SO UGLY?</span>
+                        <span style="font-size: 1.2rem;">+</span>
+                    </summary>
+                    <div style="background: #FFD028;"> It's not ugly, it's brutalism. It loads fast. It works. Deal with
+                        it.
+                    </div>
+                </details>
+            </div>
+
+            <div class="faq-item">
+                <details>
+                    <summary>
+                        <span>CAN I DONATE?</span>
+                        <span style="font-size: 1.2rem;">+</span>
+                    </summary>
+                    <div style="background: #FF6B6B;"> No. Keep your money. Buy a coffee.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer-wrapper">
+        <div class="footer-grid">
+            <div class="footer-col footer-annipdf">
+                <a href="index.html" class="footer-brand">annipdf</a>
+                <p class="footer-tagline">
+                    The anti-subscription PDF tool.<br>
+                    Built for people who hate logins, trackers, and waiting 30 seconds for a file to process.
+                </p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col footer-legal">
+                <div class="footer-heading">Legal Stuff</div>
+                <a href="#" class="footer-link">Privacy (None)</a>
+                <a href="#" class="footer-link">Terms (Don't sue)</a>
+                <a href="#" class="footer-link">Cookies (Yuck)</a>
+            </div>
+        </div>
+        <div class="footer-cc">
+            &copy; 2025 ANNI PDF. CODE IS LAW. BUILT WITH HATE.
+        </div>
+    </footer>
+    <script src="common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filters = document.querySelectorAll('.tool-filter');
+            const tools = document.querySelectorAll('.tool-card');
+            const searchInput = document.getElementById('searchInput');
+
+            // Filter Click Handler
+            filters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // Remove active class from all
+                    filters.forEach(f => f.classList.remove('active'));
+                    // Add active class to clicked
+                    filter.classList.add('active');
+
+                    const filterValue = filter.getAttribute('data-filter');
+
+                    // Clear search search input when filtering
+                    if (searchInput) searchInput.value = '';
+
+                    tools.forEach(tool => {
+                        if (filterValue === 'all') {
+                            tool.style.display = 'flex';
+                        } else {
+                            const categories = tool.getAttribute('data-category');
+                            if (categories && categories.includes(filterValue)) {
+                                tool.style.display = 'flex';
+                            } else {
+                                tool.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Random Colors for Tool Cards
+            const colors = ['#FF6B6B', '#4ade80', '#FFD028', '#67E8F9', '#A5B4FC', '#FDA4AF'];
+            tools.forEach(tool => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                tool.style.setProperty('--random-color', randomColor);
+            });
+
+            // Search Functionality
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+
+                    // If searching, remove active class from filters to avoid confusion
+                    if (searchTerm.length > 0) {
+                        filters.forEach(f => f.classList.remove('active'));
+                    }
+
+                    tools.forEach(tool => {
+                        const title = tool.querySelector('.tool-card-name').innerText.toLowerCase();
+                        const desc = tool.querySelector('.tool-card-desc').innerText.toLowerCase();
+
+                        if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                            tool.style.display = 'flex';
+                        } else {
+                            tool.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
