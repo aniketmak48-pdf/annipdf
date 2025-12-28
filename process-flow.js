@@ -3,6 +3,7 @@
  * Shared logic for managing the UI flow: Upload -> Process -> Success
  * Ensures consistent behavior across all AnniPDF tools.
  */
+/* UI cleanup test */
 
 class ProcessFlow {
     constructor(config = {}) {
@@ -189,3 +190,4 @@ class ProcessFlow {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
+
